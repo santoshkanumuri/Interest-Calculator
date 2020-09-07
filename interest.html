@@ -82,7 +82,7 @@
             var year=parseInt(t)/12;
             var rdi=(p*(Math.pow((1+ irate/100),(year)*icp)-1)/(1-Math.pow((1+irate/100),-icp/12))).toFixed(2);
             console.log(rdi);
-            document.getElementById("rdanswer").value=rdi.toFixed(2);
+            document.getElementById("rdanswer").value=rdi;
          }
          function tdint(){
             var p=document.getElementById("tdp").value;
@@ -93,7 +93,7 @@
             var tdi=(p*Math.pow((1 + irate/100),(t/12*icp))).toFixed(2);
             console.log(p+" "+i+" "+t);
             console.log(tdi);
-            document.getElementById("tdanswer").value=tdi.toFixed(2);
+            document.getElementById("tdanswer").value=tdi;
          }
 
 
