@@ -17,10 +17,12 @@
                 $(".compound").removeClass("show");
                 $(".reccuring").removeClass("show");
                 $(".timedeposit").removeClass("show");
+                $(".emicalc").removeClass("show");
                 $(".simple").addClass("hide");
                 $(".compound").addClass("hide");
                 $(".reccuring").addClass("hide");
                 $(".timedeposit").addClass("hide");
+                $(".emicalc").addClass("hide");
             });
             $(".btn1").click(function(){
                 $(".main").removeClass("show");
@@ -45,6 +47,12 @@
                 $(".main").addClass("hide");
                 $(".timedeposit").addClass("show");
                 $(".timedeposit").removeClass("hide");
+            });
+            $(".btn5").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".emicalc").addClass("show");
+                $(".emicalc").removeClass("hide");
             });
 
 
@@ -95,6 +103,17 @@
             console.log(tdi);
             document.getElementById("tdanswer").value=tdi;
          }
+         function emiint(){
+            var p=document.getElementById("emip").value;
+            var i=document.getElementById("emii").value/1200;
+            var t=document.getElementById("emit").value;
+            var emi=Math.round(p*i/(1-(Math.pow(1/(1+i),t)))*100)/100
+            document.getElementById("mi").value=emi;
+            var k=parseInt(t*emi)
+            var l=parseInt(document.getElementById("emip").value);
+            document.getElementById("tp").value=(k);
+            document.getElementById("ip").value=k-l
+         }
 
 
     </script>
@@ -106,6 +125,7 @@
         <button id="btn2" class="btn2">Compound Interst</button>
         <button id="btn3" class="btn3">Reccuring Deposit Caluclator</button>
         <button id="btn4" class="btn4">Time Deposit Caluclator</button>
+        <button id="btn5" class="btn5">EMI Caluclator</button>
     </div>
     
     <div class="simple hide">
@@ -147,7 +167,7 @@
 
     
     <div class="timedeposit hide">
-        <p>Time/Tenure Deposit</p>
+        <p>Time/Term Deposit</p>
         <input type="text" placeholder="Principal Amount" id="tdp">
         <input type="text" placeholder="Interst Rate" id="tdi">
         <input type="text" placeholder="Time Period" id="tdt">
@@ -162,6 +182,19 @@
         <button onclick="tdint()">Caluclate</button>
         <input type="text" placeholder="Maturity Amount" id="tdanswer">
     </div>
+
+    <div class="emicalc hide">
+        <p>EMI Caluclator</p>
+        <input type="text" placeholder="Loan Amount" id="emip">
+        <input type="text" placeholder="Interst Rate" id="emii">
+        <input type="text" placeholder="Repayment Period (In Months)" id="emit">
+        <button onclick="emiint()">Caluclate</button>
+        <input type="text" placeholder="Monthly Installment" id="mi">
+        <input type="text" placeholder="Interst Payable" id="ip">
+        <input type="text" placeholder="Total Payable" id="tp">
+    </div>
+
+
 
 </body>
 </html>
