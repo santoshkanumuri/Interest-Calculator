@@ -32,7 +32,7 @@ input{
     width:50px;
     content:"/f30a";
 }
-#sianswer,#cianswer,#rdanswer,#tdanswer,#mi,#tp,#ip{
+#sianswer,#cianswer,#rdanswer,#tdanswer,#mi,#tp,#ip,#ppi,#tpi,#monthi{
     font-size:16px;
     font-weight: bolder;
     
@@ -44,8 +44,9 @@ input{
     background:white;
     justify-content: center;
     align-items: center;
-    border:2px solid #89a2da;
-    transform: translateY(30%);
+    border:2px solid #00d09c;
+    transform: translateY(10%);
+    border-radius: 8px;
 
 }
 .main button{
@@ -95,13 +96,19 @@ input{
   button{
       width:180px;
       height:40px;
-      border-radius:8px;
+      border-radius:6px;
       font-size: 20px;
       background:#7390cf ;
       color:white;
       border:none;
       margin-top:30px;
       margin-bottom: 30px;
+      outline:none;
+  }
+  button:hover{
+      border:2px solid #7390cf;
+      background:white;
+      color:#00d09c;
   }
 .show{
     display:flex;
@@ -112,7 +119,7 @@ input{
     margin:20px;
     padding:20px;
     background:white;
-    transform: translateY(10%);
+    transform: translateY(0%);
     border-radius: 8px;
     border:2px solid  #89a2da;
 
