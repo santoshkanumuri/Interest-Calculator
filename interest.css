@@ -32,19 +32,19 @@ input{
     width:50px;
     content:"/f30a";
 }
-#sianswer,#cianswer,#rdanswer,#tdanswer{
-    font-size:20px;
+#sianswer,#cianswer,#rdanswer,#tdanswer,#mi,#tp,#ip{
+    font-size:16px;
     font-weight: bolder;
     
 }
 .main{
     display:flex;
-    width:400px;
+    width:350px;
     flex-direction: column;
     background:white;
     justify-content: center;
     align-items: center;
-    border:3px solid #00d09c;
+    border:2px solid #89a2da;
     transform: translateY(30%);
 
 }
@@ -58,7 +58,7 @@ input{
 }
 
   .box select {
-    background-color: #7094bb;
+    background-color: #00d09c;
     color: white;
     padding: 10px;
     height:40px;
@@ -97,7 +97,7 @@ input{
       height:40px;
       border-radius:8px;
       font-size: 20px;
-      background:#00d09c ;
+      background:#7390cf ;
       color:white;
       border:none;
       margin-top:30px;
@@ -114,7 +114,7 @@ input{
     background:white;
     transform: translateY(10%);
     border-radius: 8px;
-    border:2px solid #00d09c;
+    border:2px solid  #89a2da;
 
 }
 .hide{
