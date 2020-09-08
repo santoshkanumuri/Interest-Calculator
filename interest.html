@@ -17,12 +17,14 @@
                 $(".compound").removeClass("show");
                 $(".reccuring").removeClass("show");
                 $(".timedeposit").removeClass("show");
+                $(".mortagage").removeClass("show");
                 $(".emicalc").removeClass("show");
                 $(".simple").addClass("hide");
                 $(".compound").addClass("hide");
                 $(".reccuring").addClass("hide");
                 $(".timedeposit").addClass("hide");
                 $(".emicalc").addClass("hide");
+                $(".mortagage").addClass("hide");
             });
             $(".btn1").click(function(){
                 $(".main").removeClass("show");
@@ -53,6 +55,12 @@
                 $(".main").addClass("hide");
                 $(".emicalc").addClass("show");
                 $(".emicalc").removeClass("hide");
+            });
+            $(".btn6").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".mortagage").addClass("show");
+                $(".mortagage").removeClass("hide");
             });
 
 
@@ -114,6 +122,23 @@
             document.getElementById("tp").value=(k);
             document.getElementById("ip").value=k-l
          }
+         function mortint(){
+            var p=document.getElementById("mgp").value;
+            var i=document.getElementById("mgi").value;
+            var t=document.getElementById("mgt").value*12;
+            var ti=document.getElementById("mgti").value;
+            var inst="";
+            var intr=i/1200;
+            var intrgt="";
+            var x=Math.round((p*intr/(1-(Math.pow(1/(1+intr),t))))*100)/100;
+            var mtax=((parseFloat(ti)/12)*1).toFixed(2);
+            document.getElementById("ppi").value=x;
+            document.getElementById("tpi").value=mtax;
+            var lo=parseFloat(x)+parseFloat(mtax);
+            document.getElementById("monthi").value=lo.toFixed(2);
+
+
+         }
 
 
     </script>
@@ -123,9 +148,10 @@
     <div class="main">
         <button id="btn1" class="btn1">Simple Interst</button>
         <button id="btn2" class="btn2">Compound Interst</button>
-        <button id="btn3" class="btn3">Reccuring Deposit Caluclator</button>
-        <button id="btn4" class="btn4">Time Deposit Caluclator</button>
-        <button id="btn5" class="btn5">EMI Caluclator</button>
+        <button id="btn3" class="btn3">Reccuring Deposit calculator</button>
+        <button id="btn4" class="btn4">Time Deposit calculator</button>
+        <button id="btn5" class="btn5">EMI calculator</button>
+        <button id="btn6" class="btn6">Mortagage calculator</button>
     </div>
     
     <div class="simple hide">
@@ -133,7 +159,7 @@
         <input type="text" placeholder="Principal Amount" id="p">
         <input type="text" placeholder="Interst Rate" id="i">
         <input type="text" placeholder="Time Period" id="t">
-        <button onclick="pint()">Caluclate</button>
+        <button onclick="pint()">Calculate</button>
         <input type="text" placeholder="Total Principal Amount" id="sianswer">
     </div>
 
@@ -143,7 +169,7 @@
         <input type="text" placeholder="Principal Amount" id="cp">
         <input type="text" placeholder="Interst Rate" id="ci">
         <input type="text" placeholder="Time Period" id="ct">
-        <button onclick="cint()">Caluclate</button>
+        <button onclick="cint()">Calculate</button>
         <input type="text" placeholder="Total Principal Amount" id="cianswer">
     </div>
 
@@ -161,7 +187,7 @@
             <option value=1 selected>Yearly
         </select>
     </div>
-        <button onclick="rdint()">Caluclate</button>
+        <button onclick="rdint()">Calculate</button>
         <input type="text" placeholder="Maturity Amount" id="rdanswer">
     </div>
 
@@ -179,19 +205,30 @@
             <option value=1 selected>Yearly
         </select>
     </div>
-        <button onclick="tdint()">Caluclate</button>
+        <button onclick="tdint()">Calculate</button>
         <input type="text" placeholder="Maturity Amount" id="tdanswer">
     </div>
 
     <div class="emicalc hide">
-        <p>EMI Caluclator</p>
+        <p>EMI calculator</p>
         <input type="text" placeholder="Loan Amount" id="emip">
         <input type="text" placeholder="Interst Rate" id="emii">
         <input type="text" placeholder="Repayment Period (In Months)" id="emit">
-        <button onclick="emiint()">Caluclate</button>
-        <input type="text" placeholder="Monthly Installment" id="mi">
+        <button onclick="emiint()">Calculate</button>
+        <input type="text" placeholder="Monthly Instalment" id="mi">
         <input type="text" placeholder="Interst Payable" id="ip">
         <input type="text" placeholder="Total Payable" id="tp">
+    </div>
+    <div class="mortagage hide">
+        <p>Mortagage calculator</p>
+        <input type="text" placeholder="Loan Amount" id="mgp">
+        <input type="text" placeholder="Interst Rate" id="mgi">
+        <input type="text" placeholder="Amortisation (years)" id="mgt">
+        <input type="text" placeholder="Taxes + Insurance" id="mgti">
+        <button onclick="mortint()">Calculate</button>
+        <input type="text" placeholder="Principal + Interest" id="ppi">
+        <input type="text" placeholder="Taxes + Insurance" id="tpi">
+        <input type="text" placeholder="Monthly Instalment" id="monthi">
     </div>
 
 
