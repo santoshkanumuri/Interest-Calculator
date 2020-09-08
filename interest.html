@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="interest.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Interest Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script defer src="https://fontawesome.com/js/all.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".back").click(function(){
+                $(".main").addClass("show");
+                $(".main").removeClass("hide");
+                $(".simple").removeClass("show");
+                $(".compound").removeClass("show");
+                $(".reccuring").removeClass("show");
+                $(".timedeposit").removeClass("show");
+                $(".simple").addClass("hide");
+                $(".compound").addClass("hide");
+                $(".reccuring").addClass("hide");
+                $(".timedeposit").addClass("hide");
+            });
+            $(".btn1").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".simple").addClass("show");
+                $(".simple").removeClass("hide");
+            });
+            $(".btn2").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".compound").addClass("show");
+                $(".compound").removeClass("hide");
+            });
+            $(".btn3").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".reccuring").addClass("show");
+                $(".reccuring").removeClass("hide");
+            });
+            $(".btn4").click(function(){
+                $(".main").removeClass("show");
+                $(".main").addClass("hide");
+                $(".timedeposit").addClass("show");
+                $(".timedeposit").removeClass("hide");
+            });
+
+
+        });
+
+
+
+        function pint(){
+            var p=document.getElementById("p").value;
+            var i=document.getElementById("i").value;
+            var t=document.getElementById("t").value;   
+            console.log(p+" "+i+" "+t);
+            var pi=p*i/100
+            pi=pi*t
+            console.log(pi);
+            var tot=parseInt(p)+parseInt(pi);
+            console.log(tot);
+            document.getElementById("sianswer").value=parseInt(pi).toFixed(2);
+         }
+         function cint(){
+            var p=document.getElementById("cp").value;
+            var i=document.getElementById("ci").value;
+            var t=document.getElementById("ct").value;
+            console.log(p+" "+i+" "+t);
+            var ci=p*(Math.pow((1+i/100),t))
+            console.log(ci);
+            document.getElementById("cianswer").value=ci.toFixed(2);
+         }
+         function rdint(){
+            var p=document.getElementById("rdp").value;
+            var i=document.getElementById("rdi").value;
+            var t=document.getElementById("rdt").value;
+            var icp=document.getElementById("rdicp").value;
+            var irate=parseFloat(i)/icp;
+            var year=parseInt(t)/12;
+            var rdi=(p*(Math.pow((1+ irate/100),(year)*icp)-1)/(1-Math.pow((1+irate/100),-icp/12))).toFixed(2);
+            console.log(rdi);
+            document.getElementById("rdanswer").value=rdi;
+         }
+         function tdint(){
+            var p=document.getElementById("tdp").value;
+            var i=document.getElementById("tdi").value;
+            var t=document.getElementById("tdt").value;
+            var icp=document.getElementById("tdicp").value;
+            var irate=parseFloat(i)/icp;
+            var tdi=(p*Math.pow((1 + irate/100),(t/12*icp))).toFixed(2);
+            console.log(p+" "+i+" "+t);
+            console.log(tdi);
+            document.getElementById("tdanswer").value=tdi;
+         }
+
+
+    </script>
+</head>
+<body>
+    <button id="back" class="back"><i class="fa fa-arrow-left"></i></button>
+    <div class="main">
+        <button id="btn1" class="btn1">Simple Interst</button>
+        <button id="btn2" class="btn2">Compound Interst</button>
+        <button id="btn3" class="btn3">Reccuring Deposit Caluclator</button>
+        <button id="btn4" class="btn4">Time Deposit Caluclator</button>
+    </div>
+    
+    <div class="simple hide">
+        <p>Simple Interest</p>
+        <input type="text" placeholder="Principal Amount" id="p">
+        <input type="text" placeholder="Interst Rate" id="i">
+        <input type="text" placeholder="Time Period" id="t">
+        <button onclick="pint()">Caluclate</button>
+        <input type="text" placeholder="Total Principal Amount" id="sianswer">
+    </div>
+
+    
+    <div class="compound hide">
+        <p>Compound Interest</p>
+        <input type="text" placeholder="Principal Amount" id="cp">
+        <input type="text" placeholder="Interst Rate" id="ci">
+        <input type="text" placeholder="Time Period" id="ct">
+        <button onclick="cint()">Caluclate</button>
+        <input type="text" placeholder="Total Principal Amount" id="cianswer">
+    </div>
+
+    
+    <div class="reccuring hide">
+        <p>Reccuring Deposit Interest</p>
+        <input type="text" placeholder="Principal Amount" id="rdp">
+        <input type="text" placeholder="Interst Rate" id="rdi">
+        <input type="text" placeholder="Time Period" id="rdt">
+        <div class="box">
+        <select id="rdicp">
+            <option value=12>Monthly
+            <option value=4>Quarterly
+            <option value=2>Half Yearly
+            <option value=1 selected>Yearly
+        </select>
+    </div>
+        <button onclick="rdint()">Caluclate</button>
+        <input type="text" placeholder="Maturity Amount" id="rdanswer">
+    </div>
+
+    
+    <div class="timedeposit hide">
+        <p>Time/Tenure Deposit</p>
+        <input type="text" placeholder="Principal Amount" id="tdp">
+        <input type="text" placeholder="Interst Rate" id="tdi">
+        <input type="text" placeholder="Time Period" id="tdt">
+        <div class="box">
+        <select id="tdicp">
+            <option value=12>Monthly
+            <option value=4>Quarterly
+            <option value=2>Half Yearly
+            <option value=1 selected>Yearly
+        </select>
+    </div>
+        <button onclick="tdint()">Caluclate</button>
+        <input type="text" placeholder="Maturity Amount" id="tdanswer">
+    </div>
+
+</body>
+</html>
