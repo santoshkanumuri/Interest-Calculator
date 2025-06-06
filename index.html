@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Interest Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-calculator"></i> Advanced Interest Calculator</h1>
+            <p>Calculate Simple Interest, Compound Interest, and EMI with ease</p>
+        </header>
+
+        <div class="calculator-tabs">
+            <button class="tab-btn active" data-tab="simple">Simple Interest</button>
+            <button class="tab-btn" data-tab="compound">Compound Interest</button>
+            <button class="tab-btn" data-tab="emi">EMI Calculator</button>
+        </div>
+
+        <!-- Simple Interest Calculator -->
+        <div class="calculator-panel active" id="simple">
+            <div class="input-section">
+                <h2>Simple Interest Calculator</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="si-principal">Principal Amount ($)</label>
+                        <input type="number" id="si-principal" placeholder="Enter principal amount" min="0" step="0.01">
+                        <small class="help-text">The initial amount of money</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="si-rate">Interest Rate (%)</label>
+                        <input type="number" id="si-rate" placeholder="Enter interest rate" min="0" step="0.01">
+                        <small class="help-text">Annual interest rate</small>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="si-time">Time Period</label>
+                        <input type="number" id="si-time" placeholder="Enter time period" min="0" step="0.01">
+                        <small class="help-text">Duration of investment</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="si-time-unit">Time Unit</label>
+                        <select id="si-time-unit">
+                            <option value="years">Years</option>
+                            <option value="months">Months</option>
+                            <option value="days">Days</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateSimpleInterest()">
+                    <i class="fas fa-chart-line"></i> Calculate Simple Interest
+                </button>
+            </div>
+            <div class="result-section" id="si-result"></div>
+        </div>
+
+        <!-- Compound Interest Calculator -->
+        <div class="calculator-panel" id="compound">
+            <div class="input-section">
+                <h2>Compound Interest Calculator</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="ci-principal">Principal Amount ($)</label>
+                        <input type="number" id="ci-principal" placeholder="Enter principal amount" min="0" step="0.01">
+                        <small class="help-text">The initial amount of money</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="ci-rate">Interest Rate (%)</label>
+                        <input type="number" id="ci-rate" placeholder="Enter interest rate" min="0" step="0.01">
+                        <small class="help-text">Annual interest rate</small>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="ci-time">Time Period (Years)</label>
+                        <input type="number" id="ci-time" placeholder="Enter time in years" min="0" step="0.01">
+                        <small class="help-text">Duration of investment</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="ci-frequency">Compounding Frequency</label>
+                        <select id="ci-frequency">
+                            <option value="1">Annually</option>
+                            <option value="2">Semi-Annually</option>
+                            <option value="4">Quarterly</option>
+                            <option value="12">Monthly</option>
+                            <option value="365">Daily</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateCompoundInterest()">
+                    <i class="fas fa-chart-area"></i> Calculate Compound Interest
+                </button>
+            </div>
+            <div class="result-section" id="ci-result"></div>
+        </div>
+
+        <!-- EMI Calculator -->
+        <div class="calculator-panel" id="emi">
+            <div class="input-section">
+                <h2>EMI Calculator</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="emi-principal">Loan Amount ($)</label>
+                        <input type="number" id="emi-principal" placeholder="Enter loan amount" min="0" step="0.01">
+                        <small class="help-text">Total loan amount</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="emi-rate">Interest Rate (% per annum)</label>
+                        <input type="number" id="emi-rate" placeholder="Enter interest rate" min="0" step="0.01">
+                        <small class="help-text">Annual interest rate</small>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="emi-tenure">Loan Tenure</label>
+                        <input type="number" id="emi-tenure" placeholder="Enter tenure" min="0" step="1">
+                        <small class="help-text">Loan duration</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="emi-tenure-unit">Tenure Unit</label>
+                        <select id="emi-tenure-unit">
+                            <option value="months">Months</option>
+                            <option value="years">Years</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateEMI()">
+                    <i class="fas fa-credit-card"></i> Calculate EMI
+                </button>
+            </div>
+            <div class="result-section" id="emi-result"></div>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-section">
+            <div class="history-header">
+                <h3><i class="fas fa-history"></i> Calculation History</h3>
+                <div class="history-controls">
+                    <button class="btn-secondary" onclick="exportHistory()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn-danger" onclick="clearHistory()">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+            <div class="history-list" id="history-list">
+                <p class="no-history">No calculations yet. Start calculating to see your history!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
